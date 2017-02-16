@@ -1,0 +1,10 @@
+-R src lambda
+
+src/Derived_Mod.v
+src/Extensionality.v
+src/Lc.v
+src/Lc_exp.v
+src/Misc.v
+src/Quot.v
+src/Slc.v
+
