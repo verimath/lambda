@@ -1,3 +1,5 @@
+(* This code is copyrighted by its authors; it is distributed under  *)
+(* the terms of the LGPL license (see LICENSE and description files) *)
 
 (** * Modules *)
 
@@ -21,9 +23,9 @@ Record Mod (P : Monad) : Type := {
     mod_carrier Y;
   mbind_mbind : forall X Y Z
     (f : X -> P Y) (g : Y -> P Z) (x : mod_carrier X),
-    mbind Y Z g (mbind X Y f x) = mbind X Z (fun u => f u >>= g) x;
+    mbind Z g (mbind Y f x) = mbind Z (fun u => f u >>= g) x;
   unit_mbind : forall X (x : mod_carrier X),
-    mbind X X (@unit P X) x = x
+    mbind X (@unit P X) x = x
 }.
 
 Notation "x >>>= f" := (@mbind _ _ _ _ f x).

@@ -1,9 +1,9 @@
 (* This code is copyrighted by its authors; it is distributed under  *)
 (* the terms of the LGPL license (see LICENSE and description files) *)
 
-(** * Monads *)
-
 Set Implicit Arguments.
+
+(** * Monads *)
 
 Require Export Misc.
 Require Import Extensionality.
@@ -26,12 +26,12 @@ Record Monad : Type := {
     forall X Y Z
     (f : X -> monad_carrier Y) (g : Y -> monad_carrier Z)
     (x : monad_carrier X),
-    bind Y Z g (bind X Y f x) =
-      bind X Z (fun u => bind Y Z g (f u)) x;
+    bind g (bind f x) =
+      bind (fun u => bind g (f u)) x;
   bind_unit : forall X Y (f : X -> monad_carrier Y) (x : X),
-    bind X Y f (unit X x) = f x;
+    bind f (unit x) = f x;
   unit_bind : forall X (x : monad_carrier X),
-    bind X X (unit X) x = x
+    bind (@unit X) x = x
 }.
 
 Notation "x >>= f" := (@bind _ _ _ f x).

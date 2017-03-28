@@ -1,8 +1,11 @@
+(* This code is copyrighted by its authors; it is distributed under  *)
+(* the terms of the LGPL license (see LICENSE and description files) *)
 
 (** * Main theorem of the present contribution *)
 
 (** Proof of the following theorem [iota_unique] :
-    "Simple Lambda Calculus is initial in the category of exponential monads". *)
+    "Simple Lambda Calculus is initial in the category of
+     exponential monads". *)
 
 Set Implicit Arguments.
 

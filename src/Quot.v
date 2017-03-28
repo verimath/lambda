@@ -1,3 +1,5 @@
+(* This code is copyrighted by its authors; it is distributed under  *)
+(* the terms of the LGPL license (see LICENSE and description files) *)
 
 (** * Equivalence relations and quotients *)
 
@@ -163,9 +165,15 @@ Variable f : X -> Y -> Z.
 Hypothesis Hf : forall x y z w,
   rX x y -> rY z w -> rZ (f x z) (f y w).
 
+Let h_subproof : forall (x : X) (x0 y : Y),
+  rY x0 y -> rZ (f x x0) (f x y).
+Proof.
+auto.
+Qed.
+
 Let h  (x : X) : Y // rY -> Z // rZ.
 Proof.
-intro. apply (factor1 rY rZ (f x)). abstract auto.
+apply (factor1 rY rZ (f x)). exact (h_subproof x).
 Defined.
 
 Remark rmk : forall x y, rX x y -> h x = h y.
